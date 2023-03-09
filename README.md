@@ -5,6 +5,8 @@ An E-commerce Store for developers to sell code!
 </th>
 </table>
 
+## `Deployment:` [Live Demo 🚀](https://dev-comm.vercel.app/)
+
 ## ❔ What is this project about ? 
 This is a E-commerce Store for developers or designers to sell their creativity.
 
@@ -16,7 +18,7 @@ This is a E-commerce Store for developers or designers to sell their creativity.
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 ![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)
 
-## 🚀 Setting up
+## 🎯 Setting up
 1. clone the repo 
 2. cd dev-com
 3. run ```npm install``` to install all the dependencies
