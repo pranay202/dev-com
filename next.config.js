@@ -1,8 +1,7 @@
 module.exports = {
   env: {
-    BASE_URL: 'http://localhost:3000',
-    MONGODB_URL:
-      'mongodb+srv://Pranay:Pranay2@@ecommerceprojects.gqijur5.mongodb.net/?retryWrites=true&w=majority',
+    BASE_URL: 'https://dev-comm.vercel.app',
+    MONGODB_URL: 'mongodb+srv://pranay:Pranay2329@major.yxqf4tk.mongodb.net/',
     ACCESS_TOKEN_SECRET: 'Admin2@',
     REFRESH_TOKEN_SECRET: 'Admin2@',
     PAYPAL_CLIENT_ID:
