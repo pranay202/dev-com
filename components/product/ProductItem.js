@@ -10,10 +10,8 @@ const ProductItem = ({ product, handleCheck }) => {
   const userLink = () => {
     return (
       <>
-        <Link href={`product/${product._id}`}>
-          <a className='btn btn-info' style={{ marginRight: '5px', flex: 1 }}>
-            View
-          </a>
+        <Link href={`/product/${product._id}`} className='btn btn-info' style={{ marginRight: '5px', flex: 1 }}>
+          View
         </Link>
         <button
           className='btn btn-success'
@@ -30,10 +28,8 @@ const ProductItem = ({ product, handleCheck }) => {
   const adminLink = () => {
     return (
       <>
-        <Link href={`create/${product._id}`}>
-          <a className='btn btn-info' style={{ marginRight: '5px', flex: 1 }}>
-            Edit
-          </a>
+        <Link href={`/create/${product._id}`} className='btn btn-info' style={{ marginRight: '5px', flex: 1 }}>
+          Edit
         </Link>
         <button
           className='btn btn-danger'
@@ -73,8 +69,8 @@ const ProductItem = ({ product, handleCheck }) => {
       )}
       <img
         className='card-img-top'
-        src={product.images[0].url}
-        alt={product.images[0].url}
+        src={(product.images && product.images[0] && product.images[0].url) ? product.images[0].url : '/cover.jfif'}
+        alt={(product.images && product.images[0] && product.images[0].url) ? product.images[0].url : 'Product image placeholder'}
       />
       <div className='card-body'>
         <h5 className='card-title text-capitalize' title={product.title}>

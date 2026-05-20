@@ -119,7 +119,11 @@ const ProductsManager = () => {
     const imgNewURL = images.filter((img) => !img.url);
     const imgOldURL = images.filter((img) => img.url);
 
-    if (imgNewURL.length > 0) media = await imageUpload(imgNewURL);
+    try {
+      if (imgNewURL.length > 0) media = await imageUpload(imgNewURL);
+    } catch (err) {
+      return dispatch({ type: 'NOTIFY', payload: { error: err.message } });
+    }
 
     let res;
     if (onEdit) {
@@ -249,7 +253,7 @@ const ProductsManager = () => {
             {images.map((img, index) => (
               <div key={index} className='file_img my-1'>
                 <img
-                  src={img.url ? img.url : URL.createObjectURL(img)}
+                  src={img.url ? img.url : (img instanceof File || img instanceof Blob) ? URL.createObjectURL(img) : img}
                   alt=''
                   className='img-thumbnail rounded'
                 />

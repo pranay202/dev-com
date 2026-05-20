@@ -99,7 +99,7 @@ const Profile = () => {
                     </h3>
 
                     <div className="avatar">
-                        <img src={avatar ? URL.createObjectURL(avatar) : auth.user.avatar} 
+                        <img src={avatar && (avatar instanceof File || avatar instanceof Blob) ? URL.createObjectURL(avatar) : (typeof avatar === 'string' && avatar ? avatar : auth.user.avatar)} 
                         alt="avatar" />
                         <span>
                             <i className="fas fa-camera"></i>
@@ -161,7 +161,7 @@ const Profile = () => {
                                         <tr key={order._id}>
                                             <td className="p-2">
                                                 <Link href={`/order/${order._id}`}>
-                                                    <a>{order._id}</a>
+                                                    {order._id}
                                                 </Link>
                                                 
                                             </td>

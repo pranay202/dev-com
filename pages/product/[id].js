@@ -24,18 +24,18 @@ const DetailProduct = (props) => {
 
       <div className='col-md-6'>
         <img
-          src={product.images[tab].url}
-          alt={product.images[tab].url}
+          src={(product.images && product.images[tab] && product.images[tab].url) ? product.images[tab].url : '/cover.jfif'}
+          alt={(product.images && product.images[tab] && product.images[tab].url) ? product.images[tab].url : 'Product Image'}
           className='d-block img-thumbnail rounded mt-4 w-100'
           style={{ height: '350px' }}
         />
 
         <div className='row mx-0' style={{ cursor: 'pointer' }}>
-          {product.images.map((img, index) => (
+          {product.images && product.images.map((img, index) => (
             <img
               key={index}
-              src={img.url}
-              alt={img.url}
+              src={img.url || '/cover.jfif'}
+              alt={img.url || 'Product Image'}
               className={`img-thumbnail rounded ${isActive(index)}`}
               style={{ height: '80px', width: '20%' }}
               onClick={() => setTab(index)}

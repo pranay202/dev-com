@@ -5,6 +5,7 @@ import auth from '../../../middleware/auth';
 connectDB();
 
 export default async (req, res) => {
+  console.log(`[API] ${req.method} /api/product initiated at ${new Date().toISOString()}`);
   switch (req.method) {
     case 'GET':
       await getProducts(req, res);
@@ -12,6 +13,9 @@ export default async (req, res) => {
     case 'POST':
       await createProduct(req, res);
       break;
+    default:
+      console.warn(`[API Warning] ${req.method} not allowed on /api/product`);
+      res.status(405).json({ err: 'Method not allowed.' });
   }
 };
 
@@ -64,12 +68,14 @@ const getProducts = async (req, res) => {
 
     const products = await features.query;
 
+    console.log(`[API] GET /api/product successfully fetched ${products.length} products`);
     res.json({
       status: 'success',
       result: products.length,
       products,
     });
   } catch (err) {
+    console.error('[API Error] GET /api/product failed:', err);
     return res.status(500).json({ err: err.message });
   }
 };
@@ -77,8 +83,10 @@ const getProducts = async (req, res) => {
 const createProduct = async (req, res) => {
   try {
     const result = await auth(req, res);
-    if (result.role !== 'admin')
+    if (result.role !== 'admin') {
+      console.warn(`[API Warning] Unauthorized createProduct attempt by user ID: ${result.id}`);
       return res.status(400).json({ err: 'Authentication is not valid.' });
+    }
 
     const { title, price, inStock, description, content, category, images } =
       req.body;
@@ -91,8 +99,10 @@ const createProduct = async (req, res) => {
       !content ||
       category === 'all' ||
       images.length === 0
-    )
+    ) {
+      console.warn('[API Warning] createProduct failed - missing mandatory fields');
       return res.status(400).json({ err: 'Please add all the fields.' });
+    }
 
     const newProduct = new Products({
       title: title.toLowerCase(),
@@ -105,9 +115,10 @@ const createProduct = async (req, res) => {
     });
 
     await newProduct.save();
-
+    console.log(`[API] Successfully created product: ${newProduct.title} (ID: ${newProduct._id})`);
     res.json({ msg: 'Success! Created a new product' });
   } catch (err) {
+    console.error('[API Error] POST /api/product failed:', err);
     return res.status(500).json({ err: err.message });
   }
 };

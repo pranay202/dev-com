@@ -56,7 +56,7 @@ const Users = () => {
                                         auth.user.root && auth.user.email !== user.email
                                         ? `/edit_user/${user._id}` : '#!'
                                     }>
-                                        <a><i className="fas fa-edit text-info mr-2" title="Edit"></i></a>
+                                        <i className="fas fa-edit text-info mr-2" title="Edit"></i>
                                     </Link>
 
                                     {

@@ -83,7 +83,7 @@ const OrderDetail = ({orderDetail, state, dispatch}) => {
 
                                         <h5 className="flex-fill text-secondary px-3 m-0">
                                             <Link href={`/product/${item._id}`}>
-                                                <a>{item.title}</a>
+                                                {item.title}
                                             </Link>
                                         </h5>
 
